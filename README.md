@@ -1,2 +1,5 @@
-# self-hosted-devops-enterprise-architecture
-Projeto de Arquitetura DevOps Empresarial de Nível de Produção (Hospedado no Proxmox)
+# Self-Hosted DevOps Enterprise Architecture
+
+Este repositório apresenta o blueprint arquitetural completo de uma Plataforma DevOps corporativa self-hosted, projetada para simular um ambiente enterprise real. A solução foi concebida para atender requisitos de alta disponibilidade, segurança, governança, observabilidade e continuidade de negócio, utilizando Proxmox como base de infraestrutura e Kubernetes como camada de orquestração.
+
+O objetivo deste projeto é demonstrar a concepção, implementação e documentação de uma plataforma moderna de engenharia de plataforma, incluindo práticas de DevSecOps, GitOps e SRE aplicadas a um cenário empresarial.
