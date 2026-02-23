@@ -1,4 +1,4 @@
-# Executive Summary
+# Sumário Executivo
 
 A TechNova Solutions é uma empresa SaaS B2B em crescimento, operando múltiplos ambientes de desenvolvimento e produção, com equipes distribuídas em diferentes squads de produto. O aumento da complexidade operacional e dos requisitos de segurança evidenciou a necessidade de uma plataforma DevOps corporativa padronizada, resiliente e escalável.
 
