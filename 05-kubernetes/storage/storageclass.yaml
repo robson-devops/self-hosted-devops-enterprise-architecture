@@ -1,0 +1,3 @@
+# Placeholder para definição futura de StorageClass e PVC.
+# A persistência ainda não é necessária para a demo-app,
+# mas a estrutura já está preparada para workloads stateful.

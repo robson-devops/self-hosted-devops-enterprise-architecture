@@ -1,0 +1,59 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  IMAGE_NAME: harbor.local:31764/portifolio-devops/demo-app
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+
+# -----------------------------
+# BUILD COM KANIKO
+# -----------------------------
+build-image:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"harbor.local:31764\":{\"username\":\"$HARBOR_USER\",\"password\":\"$HARBOR_PASS\"}}}" > /kaniko/.docker/config.json
+    - >
+      /kaniko/executor
+      --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/Dockerfile
+      --destination $IMAGE_NAME:$IMAGE_TAG
+      --skip-tls-verify
+      --insecure
+  only:
+    - main
+
+# -----------------------------
+# DEPLOY
+# -----------------------------
+#deploy:
+#  stage: deploy
+#  image: bitnami/kubectl:latest
+#  script:
+#    - kubectl set image deployment/demo-app demo-app=$IMAGE_NAME:$IMAGE_TAG -n apps
+#  only:
+#    - main
+
+deploy:
+  stage: deploy
+  image: alpine/helm:3.12.0
+  before_script:
+    - mkdir -p ~/.kube
+    - echo "$KUBECONFIG_CONTENT" | base64 -d > ~/.kube/config
+  script:
+    - >
+      helm upgrade --install demo-app ./helm/demo-app 
+      -n apps-dev 
+      --create-namespace 
+      -f ./helm/demo-app/values-dev.yaml 
+      --set image.repository=$IMAGE_NAME 
+      --set image.tag=$IMAGE_TAG 
+      --atomic 
+      --wait 
+      --timeout 5m
+  only:
+    - main

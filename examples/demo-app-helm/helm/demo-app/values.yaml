@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository:  harbor.local:31764/portifolio-devops/demo-app
   tag: "latest"
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   pullSecrets: ""
 
 serviceAccount:

@@ -1,16 +1,14 @@
-replicaCount: 3
+replicaCount: 2
 
 image:
   repository: harbor.local:31764/portifolio-devops/demo-app
-  tag: prod
+  tag: "staging"
   pullPolicy: Always
   pullSecrets: harbor-credentials
 
 ingress:
   enabled: true
-  host: demo.local
+  host: staging.demo.local
 
 autoscaling:
   enabled: true
-  minReplicas: 3
-  maxReplicas: 10
