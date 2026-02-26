@@ -1,0 +1,37 @@
+replicaCount: 2
+
+image:
+  repository: harbor.local:31764/portifolio-devops/nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: harbor-credentials
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  host: demo.local
+  path: /
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi
+
+livenessProbe:
+  path: /
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+readinessProbe:
+  path: /
+  initialDelaySeconds: 5
+  periodSeconds: 5
