@@ -10,6 +10,7 @@ expose:
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 
 externalURL: http://harbor.local
 harborAdminPassword: "ChangeMe123!"
