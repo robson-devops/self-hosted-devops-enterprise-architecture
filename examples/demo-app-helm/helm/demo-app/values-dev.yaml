@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: harbor.local:31764/portifolio-devops/demo-app
+  repository: harbor.local/portifolio-devops/demo-app
   tag: latest
   pullPolicy: Always
   pullSecrets: harbor-credentials
