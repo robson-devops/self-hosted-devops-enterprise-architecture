@@ -1,0 +1,9 @@
+trivy-sca:
+  stage: security
+  image: aquasec/trivy:latest
+  script:
+    - trivy fs --severity HIGH,CRITICAL --exit-code 1 --no-progress .
+  allow_failure: false
+  only:
+    - merge_requests
+    - main

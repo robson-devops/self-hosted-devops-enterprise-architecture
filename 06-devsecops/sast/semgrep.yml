@@ -1,0 +1,14 @@
+semgrep-sast:
+  stage: security
+  image: returntocorp/semgrep:latest
+  needs:
+    - gitleaks
+  variables:
+    SEMGREP_IN_DOCKER: "1"
+    SEMGREP_APP_TOKEN: ""
+  script:
+    - semgrep scan --config=auto --error $CI_PROJECT_DIR
+  allow_failure: false
+  only:
+    - merge_requests
+    - main

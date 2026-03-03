@@ -1,0 +1,16 @@
+sign_image:
+  stage: sign
+  image:
+    name: bitnami/cosign:latest
+    entrypoint: [""]
+  needs:
+    - trivy-image
+  before_script:
+    - mkdir -p ~/.docker
+    - echo "{\"auths\":{\"harbor.local\":{\"username\":\"$HARBOR_USER\",\"password\":\"$HARBOR_PASS\"}}}" > ~/.docker/config.json
+  script:
+    - echo "$COSIGN_PRIVATE_KEY" > cosign.key
+    - export COSIGN_PASSWORD=$COSIGN_PASSWORD
+    - cosign sign --key cosign.key $IMAGE_NAME:$IMAGE_TAG
+  only:
+    - main

@@ -1,0 +1,5 @@
+[[rules]]
+  id = "test-secret"
+  description = "Test secret for validation"
+  regex = '''MINHA_SENHA_SECRETA=.+'''
+  tags = ["test"]

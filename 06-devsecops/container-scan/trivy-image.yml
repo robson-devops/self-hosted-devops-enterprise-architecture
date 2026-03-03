@@ -1,0 +1,10 @@
+trivy-image:
+  stage: image-scan
+  image: aquasec/trivy:latest
+  script:
+    - trivy image --severity HIGH,CRITICAL --exit-code 1 --no-progress $IMAGE_NAME:$IMAGE_TAG
+  allow_failure: false
+  dependencies:
+    - build
+  only:
+    - main

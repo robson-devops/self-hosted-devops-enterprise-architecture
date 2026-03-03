@@ -1,0 +1,8 @@
+zap_scan:
+  stage: dast
+  image: ghcr.io/zaproxy/zaproxy:stable
+  script:
+    - zap-baseline.py -t https://sua-aplicacao.com -r zap-report.html
+  artifacts:
+    paths:
+      - zap-report.html
