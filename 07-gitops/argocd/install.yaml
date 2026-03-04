@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argocd-application-controller
+  namespace: argocd
+
+---
+# Instalação oficial simplificada do Argo CD
+# Versão estável recomendada
+# Fonte oficial:
+# https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Para manter controle via GitOps real,
+# recomenda-se aplicar o manifesto oficial completo.
+#
+# Aplicação manual inicial:
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-app-prod
+  namespace: argocd
+spec:
+  project: business-project
+
+  source:
+    repoURL: https://github.com/SEU-USUARIO/self-hosted-devops-enterprise-architecture.git
+    targetRevision: main
+    path: examples/demo-app/overlays/prod
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+
+  # Produção NÃO tem sync automático
+  syncPolicy: {}
